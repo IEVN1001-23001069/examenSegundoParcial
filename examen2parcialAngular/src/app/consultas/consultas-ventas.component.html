@@ -1,0 +1,51 @@
+<div class="flex flex-col justify-between h-full gap-6">
+  
+  <h2 class="text-lg font-bold text-slate-700 border-b border-slate-100 pb-3">Ventas del Día / Mes</h2>
+  
+  <div class="flex flex-col gap-4">
+    <!-- Consultar por Día -->
+    <div class="flex flex-col gap-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Día (ej. Monday):</label>
+      <div class="flex gap-2">
+        <input type="text" [(ngModel)]="diaSeleccionado" 
+               class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all">
+        <button (click)="buscarPorDia()" 
+                class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm py-2 px-4 rounded-xl transition-colors cursor-pointer shadow-md shadow-amber-500/20">
+          Consultar Día
+        </button>
+      </div>
+    </div>
+
+    <!-- Consultar por Mes -->
+    <div class="flex flex-col gap-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Mes (ej. November):</label>
+      <div class="flex gap-2">
+        <input type="text" [(ngModel)]="mesSeleccionado" 
+               class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all">
+        <button (click)="buscarPorMes()" 
+                class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm py-2 px-4 rounded-xl transition-colors cursor-pointer shadow-md shadow-amber-500/20">
+          Consultar Mes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resultados -->
+  <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between gap-4">
+    <ul class="divide-y divide-slate-200 max-h-36 overflow-y-auto">
+      <li *ngFor="let v of resultadosVentas" class="py-2.5 text-sm text-slate-700 flex justify-between items-center">
+        <span><strong class="text-slate-900">{{ v.nombre_cliente }}</strong> <span class="text-xs text-slate-400 ml-1">({{ v.fecha_pedido }})</span></span>
+        <span class="font-bold text-amber-600">${{ v.total_pedido }}</span>
+      </li>
+      <li *ngIf="!resultadosVentas || resultadosVentas.length === 0" class="py-4 text-center text-slate-400 text-sm italic">
+        Sin consultas recientes...
+      </li>
+    </ul>
+
+    <div class="border-t border-slate-200 pt-3 flex justify-between items-center">
+      <span class="text-xs uppercase tracking-wider font-bold text-slate-500">Ventas Totales:</span>
+      <span class="text-xl font-extrabold text-amber-600">${{ totalAcumulado }}</span>
+    </div>
+  </div>
+
+</div>

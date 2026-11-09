@@ -1,0 +1,73 @@
+<form [formGroup]="formPedido" class="flex flex-col gap-6">
+  
+  <h2 class="text-lg font-bold text-slate-700 border-b border-slate-100 pb-3">Nuevo Pedido</h2>
+
+  <!-- Fila de Datos Generales -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="flex flex-col gap-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Nombre:</label>
+      <input type="text" formControlName="nombre_cliente" 
+             class="bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all">
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Dirección:</label>
+      <input type="text" formControlName="direccion" 
+             class="bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all">
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Teléfono:</label>
+      <input type="text" formControlName="telefono" 
+             class="bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all">
+    </div>
+  </div>
+
+  <!-- Fila Inferior (Opciones y Botón) -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end pt-2">
+    
+    <!-- Tamaño Pizza -->
+    <div class="md:col-span-4 border border-slate-200 rounded-2xl p-4 bg-slate-50/50 flex flex-col gap-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Tamaño Pizza</span>
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="radio" formControlName="tamano" value="Chica" class="w-4 h-4 text-pink-600 focus:ring-pink-500 accent-pink-600"> Chica ($40)
+        </label>
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="radio" formControlName="tamano" value="Mediana" class="w-4 h-4 text-pink-600 focus:ring-pink-500 accent-pink-600"> Mediana ($80)
+        </label>
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="radio" formControlName="tamano" value="Grande" class="w-4 h-4 text-pink-600 focus:ring-pink-500 accent-pink-600"> Grande ($120)
+        </label>
+      </div>
+    </div>
+
+    <!-- Ingredientes -->
+    <div class="md:col-span-4 border border-slate-200 rounded-2xl p-4 bg-slate-50/50 flex flex-col gap-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Ingredientes ($10 c/u)</span>
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="checkbox" formControlName="jamon" class="w-4 h-4 text-pink-600 rounded focus:ring-pink-500 accent-pink-600"> Jamón
+        </label>
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="checkbox" formControlName="pina" class="w-4 h-4 text-pink-600 rounded focus:ring-pink-500 accent-pink-600"> Piña
+        </label>
+        <label class="flex items-center gap-3 text-sm font-medium text-slate-700 cursor-pointer">
+          <input type="checkbox" formControlName="champinones" class="w-4 h-4 text-pink-600 rounded focus:ring-pink-500 accent-pink-600"> Champiñones
+        </label>
+      </div>
+    </div>
+
+    <!-- Num de Pizzas y Botón -->
+    <div class="md:col-span-4 flex flex-col gap-4 justify-between h-full">
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Num. de Pizzas:</label>
+        <input type="number" formControlName="numero_pizzas" 
+               class="bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all w-full">
+      </div>
+      <button type="button" (click)="agregarPizza()" 
+              class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-pink-600/20 transition-all active:scale-95 cursor-pointer text-sm">
+        Agregar Pizza al Pedido
+      </button>
+    </div>
+
+  </div>
+</form>

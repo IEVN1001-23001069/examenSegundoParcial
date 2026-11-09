@@ -1,0 +1,63 @@
+<div class="flex flex-col justify-between h-full gap-6">
+  
+  <h2 class="text-lg font-bold text-slate-700 border-b border-slate-100 pb-3">Detalle del Pedido</h2>
+
+  <!-- Tabla Estilizada -->
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/50">
+    <div class="overflow-x-auto max-h-64">
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-slate-100 text-slate-600 font-semibold uppercase text-xs tracking-wider sticky top-0 z-10">
+            <th class="py-3 px-4 text-center w-12">Sel</th>
+            <th class="py-3 px-4">Tamaño</th>
+            <th class="py-3 px-4">Ingredientes</th>
+            <th class="py-3 px-4 text-center">Pizzas</th>
+            <th class="py-3 px-4 text-right">SubTotal</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200">
+          <tr *ngFor="let p of listaPizzas; let i = index" class="hover:bg-pink-50/50 transition-colors">
+            <td class="py-3 px-4 text-center">
+              <input type="checkbox" 
+                     [checked]="indiceSeleccionado === i"
+                     (change)="seleccionarParaQuitar(i)"
+                     class="w-4 h-4 accent-pink-600 rounded cursor-pointer">
+            </td>
+            <td class="py-3 px-4 font-medium text-slate-700">{{ p.tamano }}</td>
+            <td class="py-3 px-4 text-slate-600 text-xs">{{ p.ingredientes }}</td>
+            <td class="py-3 px-4 text-center font-semibold text-slate-700">{{ p.numero_pizzas }}</td>
+            <td class="py-3 px-4 text-right font-bold text-pink-600">${{ p.subtotal }}</td>
+          </tr>
+          <tr *ngIf="!listaPizzas || listaPizzas.length === 0">
+            <td colspan="5" class="py-8 text-center text-slate-400 italic text-sm">
+              No hay pizzas agregadas en este pedido...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Total General -->
+  <div class="flex justify-between items-center bg-slate-100 px-5 py-3.5 rounded-2xl border border-slate-200">
+    <span class="text-xs uppercase tracking-wider font-bold text-slate-500">Total a Pagar</span>
+    <span class="text-2xl font-extrabold text-slate-900">${{ calcularTotalGeneral() }}</span>
+  </div>
+
+  <!-- Botones Quitar y Terminar -->
+  <div class="flex justify-between items-center gap-4 pt-1">
+    <button type="button" 
+            (click)="ejecutarQuitar()" 
+            [disabled]="indiceSeleccionado === null"
+            class="px-5 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-sm cursor-pointer border border-rose-300 text-rose-600 bg-rose-50 hover:bg-rose-100 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">
+      Quitar Seleccionada
+    </button>
+
+    <button type="button" 
+            (click)="terminar()" 
+            class="px-6 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-lg cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-emerald-600/25 active:scale-95">
+      Terminar Pedido
+    </button>
+  </div>
+
+</div>

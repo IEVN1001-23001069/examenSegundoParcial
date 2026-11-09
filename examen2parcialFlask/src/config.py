@@ -1,0 +1,11 @@
+class DevelopmentConfig():
+    DEBUG = True
+    MYSQL_HOST = 'localhost'
+    MYSQL_USER = 'Luna'
+    MYSQL_PASSWORD = 'F4iry11<3'
+    MYSQL_DB = 'pizza_database'
+    MYSQL_CURSORCLASS = 'Cursor'
+ 
+config = {
+    'development': DevelopmentConfig
+}
